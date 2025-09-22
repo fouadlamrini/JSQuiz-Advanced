@@ -7,8 +7,7 @@
         "Un élément réservé à JavaScript",
         "Un élément qui change selon le navigateur"
       ],
-      "BonneReponse":
-        "Un élément qui donne du sens à son contenu et aide le SEO et les lecteurs automatiques",
+      "BonneReponse":"Un élément qui donne du sens à son contenu et aide le SEO et les lecteurs automatiques",
         "plusOption":true,
       "NbrQst": "1/10"
     },
@@ -28,7 +27,7 @@
         ".class { color: blue; }",
         "#id { color: red; }",
         "La dernière dans le fichier peu importe le type",
-        "Le navigateur choisit le sélecteur le plus court",
+        "Le navigateur choisit le sélecteur le plus court"
       ],
       "BonneReponse": "#id { color: red; }",
        "plusOption":false,
