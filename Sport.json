@@ -1,0 +1,83 @@
+[
+    {
+      "Questionn":
+        "Combien de joueurs y a-t-il dans une équipe de football sur le terrain ?",
+      "Reponses": ["9", "10", "11", "12"],
+      "BonneReponse": "11",
+       "plusOption":true,
+      "NbrQst": "1/10"
+    },
+
+    {
+      "Questionn": "Quel pays a remporté la Coupe du Monde de football en 2018 ?",
+      "Reponses": ["Allemagne", "France", "Brésil", "Argentine"],
+      "BonneReponse": "France",
+       "plusOption":false,
+      "NbrQst": "2/10"
+    },
+    {
+      "Questionn":
+        "Dans le basketball, combien de points vaut un tir à 3 points ?",
+      "Reponses": ["1", "2", "3", "4"],
+      "BonneReponse": "3",
+       "plusOption":false,
+      "NbrQst": "3/10"
+    },
+    {
+      "Questionn": "Quel sport utilise une raquette et un volant ?",
+      "Reponses": ["Tennis", "Badminton", "Squash", "Ping-pong"],
+      "BonneReponse": "Badminton",
+       "plusOption":false,
+      "NbrQst": "4/10"
+    },
+    {
+      "Questionn": "Le marathon a une distance officielle de :",
+      "Reponses": ["40 km", "42,195 km", "45 km", "50 km"],
+      "BonneReponse": "42,195 km",
+       "plusOption":true,
+      "NbrQst": "5/10"
+    },
+    {
+      "Questionn":
+        "Quel joueur de tennis détient le plus de titres du Grand Chelem en simple masculin (2025) ?",
+      "Reponses": [
+        "Roger Federer",
+        "Rafael Nadal",
+        "Novak Djokovic",
+        "Andy Murray"
+      ],
+      "BonneReponse": "Rafael Nadal",
+       "plusOption":false,
+      "NbrQst": "6/10"
+    },
+    {
+      "Questionn": "Dans quel sport utilise-t-on le terme “strike” ?",
+      "Reponses": ["Baseball", "Football", "Rugby", "Handball"],
+      "BonneReponse": "Baseball",
+       "plusOption":false,
+      "NbrQst": "7/10"
+    },
+    {
+      "Questionn":
+        "Combien de joueurs y a-t-il dans une équipe de volleyball sur le terrain ?",
+      "Reponses": ["5", "6", "7", "8"],
+      "BonneReponse": "6",
+       "plusOption":false,
+      "NbrQst": "8/10"
+    },
+    {
+      "Questionn":
+        "Quel pays est considéré comme le berceau des Jeux Olympiques ?",
+      "Reponses": ["Italie", "Grèce", "France", "Égypte"],
+      "BonneReponse": "Grèce",
+       "plusOption":true,
+      "NbrQst": "9/10"
+    },
+    {
+      "Questionn": "Le Tour de France est une compétition de :",
+      "Reponses": ["Natation", "Cyclisme", "Course à pied", "Triathlon"],
+      "BonneReponse": "Cyclisme",
+       "plusOption":false,
+      "NbrQst": "10/10"
+    }
+  ],
