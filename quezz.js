@@ -255,28 +255,26 @@ const category = JSON.parse(localStorage.getItem("utilisateurs"));
 
 let quizCategory = category[category.length - 1]["theme"];
 
-    let question = document.getElementById("question");
-    let choix1 = document.getElementById("choix1");
-    let choix2 = document.getElementById("choix2");
-    let choix3 = document.getElementById("choix3");
-    let choix4 = document.getElementById("choix4");
-    let nbr_question = document.getElementById("nbr_question");
+let question = document.getElementById("question");
+let choix1 = document.getElementById("choix1");
+let choix2 = document.getElementById("choix2");
+let choix3 = document.getElementById("choix3");
+let choix4 = document.getElementById("choix4");
+let nbr_question = document.getElementById("nbr_question");
 
-    let btnSuivant = document.getElementById("suivant");
-    // let btnAccept = document.getElementById("accept");
+let btnSuivant = document.getElementById("suivant");
+// let btnAccept = document.getElementById("accept");
 
-    let clicked = false;
-    let next = false;
-    let allow = true;
+let clicked = false;
+let next = false;
+let allow = true;
 
-        let NumQst = 0;
-
-
+let NumQst = 0;
 
 fetch(quizCategory + ".json")
-    .then(response => response.json())
-    .then(data => {
-        ObjThem = data;
+  .then((response) => response.json())
+  .then((data) => {
+    ObjThem = data;
 
     question.textContent =
       ObjThem[category[category.length - 1]["theme"]][0].Questionn;
@@ -288,35 +286,27 @@ fetch(quizCategory + ".json")
       ObjThem[category[category.length - 1]["theme"]][0].Reponses[2];
     choix4.textContent =
       ObjThem[category[category.length - 1]["theme"]][0].Reponses[3];
-
-    nbr_question.textContent =
-      ObjThem[category[category.length - 1]["theme"]][0].NbrQst;
-
+    nbr_question.textContent = `1/${ObjThem[quizCategory].length}`;
 
     // setInterval(afficherQst, 15000, 1);
-    
 
     let time = document.getElementById("time");
     time.textContent = 15;
-   let  timeQcm = setInterval(() => {
+    let timeQcm = setInterval(() => {
       if (allow) {
-      
         time.textContent--;
         if (time.textContent == 0) {
-            next = true;  
-       afficherQst(1);
+          next = true;
+          afficherQst(1);
           saveResult("", "", "");
           time.textContent = 15;
         }
       }
     }, 1000);
-    
 
     optionChoisir();
-
   })
-.catch(err => console.error(err));
-
+  .catch((err) => console.error(err));
 
 function afficherQst(x) {
   if (next) {
@@ -356,8 +346,7 @@ function afficherQst(x) {
       ObjThem[category[category.length - 1]["theme"]][NumQst].Reponses[2];
     choix4.textContent =
       ObjThem[category[category.length - 1]["theme"]][NumQst].Reponses[3];
-    nbr_question.textContent =
-      ObjThem[category[category.length - 1]["theme"]][NumQst].NbrQst;
+   nbr_question.textContent = `${NumQst + 1}/${ObjThem[quizCategory].length}`;
   }
 }
 

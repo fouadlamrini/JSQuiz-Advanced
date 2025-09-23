@@ -3,74 +3,64 @@
       "Questionn": "Quelle est la valeur de :7x8 ?",
       "Reponses": ["54", "56", "64", "58"],
       "BonneReponse": "56",
-       "plusOption":true,
-      "NbrQst": "1/10"
+       "plusOption":true
     },
 
     {
       "Questionn": "Quelle est la racine carrée de 144 ?",
       "Reponses": ["10", "11", "12", "14"],
       "BonneReponse": "12",
-       "plusOption":false,
-      "NbrQst": "2/10"
+       "plusOption":false
     },
     {
       "Questionn": "si x=5, quelle est la valeur de 2x^2+3?",
       "Reponses": ["48", "50", "53", "55"],
       "BonneReponse": "53",
-       "plusOption":false,
-      "NbrQst": "3/10"
+       "plusOption":false
     },
     {
       "Questionn": "Quelle est la fraction équivalente à 3/4",
       "Reponses": ["6/8", "8/12", "5/7", "9/16"],
       "BonneReponse": "6/8",
-       "plusOption":false,
-      "NbrQst": "4/10"
+       "plusOption":false
     },
     {
       "Questionn": "Résultat de :(15+5)/4",
       "Reponses": ["4", "5", "6", "8"],
       "BonneReponse": "5",
-       "plusOption":true,
-      "NbrQst": "5/10"
+       "plusOption":true
     },
     {
       "Questionn": "Quelle est la valeur de :3^4?",
       "Reponses": ["27", "64", "81", "243"],
       "BonneReponse": "81",
-       "plusOption":false,
-      "NbrQst": "6/10"
+       "plusOption":false
     },
     {
       "Questionn":
         "Un triangle a des côtés de 3 cm, 4 cm et 5 cm. Ce triangle est :",
       "Reponses": ["Isocèle", "Rectangle", "Équilatéral", "Obtus"],
       "BonneReponse": "Rectangle",
-       "plusOption":false,
-      "NbrQst": "7/10"
+       "plusOption":false
     },
     {
       "Questionn":
         "Si une pizza est coupée en 12 parts égales et que tu en manges 3, quelle fraction reste ?",
       "Reponses": ["1/4", "2/3", "3/4", "1/3"],
       "BonneReponse": "3/4",
-       "plusOption":false,
-      "NbrQst": "8/10"
+       "plusOption":false
     },
     {
       "Questionn": "La valeur de 2(x+3) quand x=4 est:",
       "Reponses": ["10", "12", "15", "14"],
       "BonneReponse": "14",
-       "plusOption":true,
-      "NbrQst": "9/10"
+       "plusOption":true
     },
     {
       "Questionn":
         "Quelle est l’aire d’un rectangle de longueur 12 cm et de largeur 5 cm ?",
       "Reponses": ["17 cm²", "60 cm²", "24 cm²", "50 cm²"],
       "BonneReponse": "60 cm²",
-       "plusOption":false,
-      "NbrQst": "10/10"
+       "plusOption":false
     }
   ]}

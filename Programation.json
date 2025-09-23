@@ -8,8 +8,7 @@
         "Un élément qui change selon le navigateur"
       ],
       "BonneReponse":"Un élément qui donne du sens à son contenu et aide le SEO et les lecteurs automatiques",
-        "plusOption":true,
-      "NbrQst": "1/10"
+        "plusOption":true
     },
 
     {
@@ -17,8 +16,7 @@
         "Quel est l’élément le plus approprié pour représenter un article autonome (self-contained article) ?",
       "Reponses": ["<div>", "<article>", "<span>", "<section>"],
       "BonneReponse": "<article>",
-       "plusOption":false,
-      "NbrQst": "2/10"
+       "plusOption":false
     },
     {
       "Questionn":
@@ -30,16 +28,14 @@
         "Le navigateur choisit le sélecteur le plus court"
       ],
       "BonneReponse": "#id { color: red; }",
-       "plusOption":false,
-      "NbrQst": "3/10"
+       "plusOption":false
     },
     {
       "Questionn":
         "Quelle propriété définit l’espace intérieur (distance entre le contenu et la bordure) ?",
       "Reponses": ["margin", "border", "padding", "outline"],
       "BonneReponse": "padding",
-       "plusOption":false,
-      "NbrQst": "4/10"
+       "plusOption":false
     },
     {
       "Questionn": "Qu’est-ce que le hoisting en JavaScript ?",
@@ -51,8 +47,7 @@
       ],
       "BonneReponse":
         "Le déplacement des déclarations de variables et fonctions en haut de leur portée avant exécution",
-         "plusOption":true,
-      "NbrQst": "5/10"
+         "plusOption":true
     },
     {
       "Questionn": "Quelle est la différence entre == et === en JavaScript ?",
@@ -64,15 +59,13 @@
       ],
       "BonneReponse":
         "== compare après conversion de type, tandis que === compare type et valeur (strict)",
-         "plusOption":false,
-      "NbrQst": "6/10"
+         "plusOption":false
     },
     {
       "Questionn": ") Comment déclare-t-on une variable en PHP ?",
       "Reponses": ["var x = 5", "$x = 5", "x := 5", "let x = 5"],
       "BonneReponse": "$x = 5",
-       "plusOption":false,
-      "NbrQst": "7/10"
+       "plusOption":false
     },
     {
       "Questionn": "Qu’est-ce qu’une superglobale comme $_GET en PHP ?",
@@ -84,8 +77,7 @@
       ],
       "BonneReponse":
         "Un tableau accessible dans tous les contextes (global) sans global $var",
-         "plusOption":false,
-      "NbrQst": "8/10"
+         "plusOption":false
     },
     {
       "Questionn": "Dans quel fichier définit-on les routes web dans Laravel ?",
@@ -96,8 +88,7 @@
         "public/index.php"
       ],
       "BonneReponse": "routes/web.php",
-       "plusOption":true,
-      "NbrQst": "9/10"
+       "plusOption":true
     },
     {
       "Questionn":
@@ -110,7 +101,6 @@
       ],
       "BonneReponse":
         "web.php est utilisé pour les interfaces web avec middleware (sessions, CSRF), tandis que api.php est",
-         "plusOption":false,
-      "NbrQst": "10/10"
+         "plusOption":false
     }
   ]}
