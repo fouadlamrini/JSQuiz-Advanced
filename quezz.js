@@ -261,6 +261,7 @@ let choix2 = document.getElementById("choix2");
 let choix3 = document.getElementById("choix3");
 let choix4 = document.getElementById("choix4");
 let nbr_question = document.getElementById("nbr_question");
+ let score = 0;
 
 let btnSuivant = document.getElementById("suivant");
 // let btnAccept = document.getElementById("accept");
@@ -312,15 +313,30 @@ fetch(quizCategory + ".json")
   })
   .catch((err) => console.error(err));
 
+let selectedAnswers = [];
+
 function afficherQst(x) {
+  
+// let inputs = document.querySelectorAll(".answerInput");
+// inputs.forEach(input => {
+//     input.type = questionObj.plusOption ? "checkbox" : "radio";
+//     input.name = questionObj.plusOption ? `choix${NumQst}` : "choix";
+//     input.checked = false;
+//     input.disabled = false;
+// });
+
+
   if (next) {
+    selectedAnswers = [];
     allow = true;
     time_par_question.textContent = 15;
     next = false;
     clicked = false;
+    let answerInput = document.querySelectorAll(".answerInput");
+    answerInput.forEach(input => input.disabled = false);
     NumQst += x;
-    let options = document.querySelectorAll(".option");
-    options.forEach((option) => {
+    let optionsDiv = document.querySelectorAll(".option");
+    optionsDiv.forEach((option) => {
       let label = option.querySelector("label");
       label.style.backgroundColor = "";
     });
@@ -354,39 +370,143 @@ function afficherQst(x) {
   }
 }
 
+
 function optionChoisir() {
-  let paragraphContenu;
+  let answerCount = 0;
   let score = 0;
   let score2 = document.getElementById("score");
+  let ScoreDisplay = document.getElementById("score");
   let options = document.querySelectorAll(".option");
   let answerInput = document.querySelectorAll(".answerInput");
-  options.forEach((option) => {
-    option.addEventListener("click", () => {
-      if (!clicked) {
-        allow = false;
-        next = true;
-        for (let i = 0; i < answerInput.length; i++) {
-          answerInput[i].disabled = true;
-        }
-        paragraphContenu = option.querySelector("span").textContent;
-        let answerCOrrect =
-          ObjThem[category[category.length - 1]["theme"]][NumQst].BonneReponse;
-        let label = option.querySelector("label");
-
-        if (paragraphContenu === answerCOrrect) {
-          label.style.backgroundColor = "lightgreen";
-          score += 10;
-          label.style.display = "disable";
-        } else {
-          label.style.backgroundColor = "#ff7f7f";
-        }
-        score2.textContent = score;
-        clicked = true;
-        saveResult(paragraphContenu, answerCOrrect, score);
-      }
+  if (!ObjThem[category[category.length - 1]["theme"]][NumQst].plusOption) {
+    let paragraphContenu;
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        if (clicked) return;
+          allow = false;
+          next = true;
+          for (let i = 0; i < answerInput.length; i++) {
+            answerInput[i].disabled = true;
+          }
+          paragraphContenu = option.querySelector("span").textContent;
+          let answerCOrrect =
+            ObjThem[category[category.length - 1]["theme"]][NumQst].BonneReponse;
+          let label = option.querySelector("label");
+  
+          if (paragraphContenu === answerCOrrect) {
+            label.style.backgroundColor = "lightgreen";
+            score += 10;
+            label.style.display = "disable";
+          } else {
+            label.style.backgroundColor = "#ff7f7f";
+          }
+          score2.textContent = score;
+          ScoreDisplay.textContent = score;
+          clicked = true;
+          saveResult(paragraphContenu, answerCOrrect, score);
+      });
     });
-  });
+  } else {
+    // let selectedAnswers = [];
+    let labels = [];
+
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        if (clicked) return; // prevent further clicks
+
+        const answerText = option.querySelector("span").textContent;
+
+        // prevent duplicate clicks on same option
+        if (!selectedAnswers.includes(answerText)) {
+          selectedAnswers.push(answerText);
+        }
+
+        const correctAnswers = ObjThem[category[category.length - 1]["theme"]][NumQst].BonneReponse;
+
+        // only check once user has selected the same number as correct answers
+        if (selectedAnswers.length === correctAnswers.length) {
+          clicked = true;
+          allow = false;
+          next = true;
+          answerInput.forEach(input => input.disabled = true);
+
+          const isCorrect = selectedAnswers.every(ans => correctAnswers.includes(ans));
+
+            options.forEach((opt) => {
+              const text = opt.querySelector("span").textContent;
+              const label = opt.querySelector("label");
+              if (selectedAnswers.includes(text) && correctAnswers.includes(text)) {
+                label.style.backgroundColor = "lightgreen"; // correct answers
+              } else if (selectedAnswers.includes(text) && !correctAnswers.includes(text)) {
+                label.style.backgroundColor = "#ff7f7f"; // wrong answers chosen
+              } else if (!selectedAnswers.includes(text) && correctAnswers.includes(text)) {
+                label.style.backgroundColor = "#7fb9ffff"; // wrong answers chosen
+                
+              }
+            });
+          if (isCorrect) {
+            score += 10;
+
+
+
+          }
+
+          score2.textContent = score;
+          ScoreDisplay.textContent = score;
+          answerInput.forEach(input => input.disabled = false);
+
+          saveResult(selectedAnswers, correctAnswers, score);
+        }
+      });
+    });
+  }
 }
+
+
+// function optionChoisir() {
+//   let answerInput = document.querySelectorAll(".answerInput");
+//   let optionCount = 0;
+//   let ArrayAnswerChoisi=[];
+//   let paragraphContenu;
+//   if(ObjThem[category[category.length - 1]["theme"]][NumQst].plusOption){
+//     answerInput[i].disabled = false;
+//     paragraphContenu = option.querySelector("span").textContent;
+//     ArrayAnswerChoisi.push(paragraphContenu);
+//     optionCount++;
+//     if(optionCount>=1){
+//      answerInput[i].disabled = true;
+//     }
+//   }
+ 
+//   let score2 = document.getElementById("score");
+//   let optionsDiv = document.querySelectorAll(".option");
+//   optionsDiv.forEach((option) => {
+//     option.addEventListener("click", () => {
+//       if (!clicked) {
+//         allow = false;
+//         next = true;
+//         for (let i = 0; i < answerInput.length; i++) {
+//           answerInput[i].disabled = true;
+//         }
+//         paragraphContenu = option.querySelector("span").textContent;
+        
+//         let answerCorrect =ObjThem[category[category.length - 1]["theme"]][NumQst].BonneReponse;
+//         let label = option.querySelector("label");
+
+//         if ( ArrayAnswerChoisi.every((el)=>el.includes(answerCorrect)) ) {
+//           label.style.backgroundColor = "lightgreen";
+//           score += 10;
+//           label.style.display = "disable";
+//         } else {
+//           label.style.backgroundColor = "#ff7f7f";
+//         }
+//         score2.textContent = score;
+//         clicked = true;
+//         saveResult(paragraphContenu, answerCorrect, score);
+//       }
+//     });
+//   });
+// }
 
 function saveResult(reponseChoisie, correctAnswer, score) {
   const stocker = localStorage.getItem("utilisateurs");

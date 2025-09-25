@@ -1,6 +1,6 @@
 { "Programation" : [
     {
-      "Questionn":  "Quels sont des langages de programmation côté serveur (back-end) ?",
+      "Questionn":  "Quels sont des langages de programmation côté serveur (back-end) ?  (multiple answers)",
       "Reponses": ["JavaScript", "PHP", "html", "CSS"],
       "BonneReponse":["PHP", "JavaScript"],
         "plusOption":true
@@ -33,7 +33,7 @@
        "plusOption":false
     },
     {
-      "Questionn": "Quels sont des frameworks parmi ces options ?",
+      "Questionn": "Quels sont des frameworks parmi ces options ?  (multiple answers)",
       "Reponses": ["Laravel", "HTML", "CSS", "React"],
       "BonneReponse":
        ["Laravel", "React"],
@@ -70,7 +70,7 @@
          "plusOption":false
     },
     {
-      "Questionn": "Quels langages sont utilisés pour structurer et styliser une page web ?",
+      "Questionn": "Quels langages sont utilisés pour structurer et styliser une page web ? (multiple answers)",
       "Reponses": ["HTML", "CSS", "JavaScript", "PHP"],
       "BonneReponse": ["HTML", "CSS"],
        "plusOption":true
