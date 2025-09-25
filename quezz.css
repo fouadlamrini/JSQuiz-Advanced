@@ -15,7 +15,7 @@
   'opsz' 24;
    color:red;
 }
-.time{font-size: x-large;}
+.time_par_question{font-size: x-large;}
 
 body{
      background: linear-gradient(to right, #e3f2fd, #ffffff); 
@@ -42,7 +42,7 @@ body{
     display: flex;
     justify-content: space-around;
 }
-.chronometre{
+.chronometre_par_question{
     display: flex;
     width: 5%;
 

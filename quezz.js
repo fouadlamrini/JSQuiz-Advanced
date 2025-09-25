@@ -288,18 +288,22 @@ fetch(quizCategory + ".json")
       ObjThem[category[category.length - 1]["theme"]][0].Reponses[3];
     nbr_question.textContent = `1/${ObjThem[quizCategory].length}`;
 
+    //time global
+   
+  setInterval(updateTime, 1000);
+
     // setInterval(afficherQst, 15000, 1);
 
-    let time = document.getElementById("time");
-    time.textContent = 15;
+    let time_par_question = document.getElementById("time_par_question");
+    time_par_question.textContent = 15;
     let timeQcm = setInterval(() => {
       if (allow) {
-        time.textContent--;
-        if (time.textContent == 0) {
+        time_par_question.textContent--;
+        if (time_par_question.textContent == 0) {
           next = true;
           afficherQst(1);
           saveResult("", "", "");
-          time.textContent = 15;
+          time_par_question.textContent = 15;
         }
       }
     }, 1000);
@@ -311,7 +315,7 @@ fetch(quizCategory + ".json")
 function afficherQst(x) {
   if (next) {
     allow = true;
-    time.textContent = 15;
+    time_par_question.textContent = 15;
     next = false;
     clicked = false;
     NumQst += x;
@@ -399,3 +403,15 @@ function saveResult(reponseChoisie, correctAnswer, score) {
 
   localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
 }
+
+  let minute = 0;
+  let seconde = 0;
+  function updateTime() {
+    seconde++;
+    if (seconde === 60) {
+      seconde = 0;
+      minute++;
+    }
+    document.getElementById("time_global_minute").textContent = minute;
+    document.getElementById("time_global_seconde").textContent = seconde;
+  }

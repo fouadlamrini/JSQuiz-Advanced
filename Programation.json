@@ -1,13 +1,8 @@
 { "Programation" : [
     {
-      "Questionn": "Que signifie un élément sémantique en HTML ?",
-      "Reponses": [
-        "Un élément qui donne du sens à son contenu et aide le SEO et les lecteurs automatiques",
-        "Un élément utilisé uniquement pour le style sans signification",
-        "Un élément réservé à JavaScript",
-        "Un élément qui change selon le navigateur"
-      ],
-      "BonneReponse":"Un élément qui donne du sens à son contenu et aide le SEO et les lecteurs automatiques",
+      "Questionn":  "Quels sont des langages de programmation côté serveur (back-end) ?",
+      "Reponses": ["JavaScript", "PHP", "html", "CSS"],
+      "BonneReponse":["PHP", "JavaScript"],
         "plusOption":true
     },
 
@@ -15,7 +10,7 @@
       "Questionn":
         "Quel est l’élément le plus approprié pour représenter un article autonome (self-contained article) ?",
       "Reponses": ["<div>", "<article>", "<span>", "<section>"],
-      "BonneReponse": "<article>",
+      "BonneReponse": ["<article>"],
        "plusOption":false
     },
     {
@@ -27,26 +22,21 @@
         "La dernière dans le fichier peu importe le type",
         "Le navigateur choisit le sélecteur le plus court"
       ],
-      "BonneReponse": "#id { color: red; }",
+      "BonneReponse": ["#id { color: red; }"],
        "plusOption":false
     },
     {
       "Questionn":
         "Quelle propriété définit l’espace intérieur (distance entre le contenu et la bordure) ?",
       "Reponses": ["margin", "border", "padding", "outline"],
-      "BonneReponse": "padding",
+      "BonneReponse": ["padding"],
        "plusOption":false
     },
     {
-      "Questionn": "Qu’est-ce que le hoisting en JavaScript ?",
-      "Reponses": [
-        "Le déplacement des déclarations de variables et fonctions en haut de leur portée avant exécution",
-        "La désactivation des variables",
-        "Une méthode pour accélérer le chargement des images",
-        "Ajouter des propriétés au DOM uniquement"
-      ],
+      "Questionn": "Quels sont des frameworks parmi ces options ?",
+      "Reponses": ["Laravel", "HTML", "CSS", "React"],
       "BonneReponse":
-        "Le déplacement des déclarations de variables et fonctions en haut de leur portée avant exécution",
+       ["Laravel", "React"],
          "plusOption":true
     },
     {
@@ -58,13 +48,13 @@
         "=== n’est disponible qu’à partir d’ES6"
       ],
       "BonneReponse":
-        "== compare après conversion de type, tandis que === compare type et valeur (strict)",
+       [ "== compare après conversion de type, tandis que === compare type et valeur (strict)"],
          "plusOption":false
     },
     {
       "Questionn": ") Comment déclare-t-on une variable en PHP ?",
       "Reponses": ["var x = 5", "$x = 5", "x := 5", "let x = 5"],
-      "BonneReponse": "$x = 5",
+      "BonneReponse": ["$x = 5"],
        "plusOption":false
     },
     {
@@ -76,18 +66,13 @@
         "Une variable contenant uniquement des fonctions"
       ],
       "BonneReponse":
-        "Un tableau accessible dans tous les contextes (global) sans global $var",
+        ["Un tableau accessible dans tous les contextes (global) sans global $var"],
          "plusOption":false
     },
     {
-      "Questionn": "Dans quel fichier définit-on les routes web dans Laravel ?",
-      "Reponses": [
-        "routes/web.php",
-        "app/Http/routes.php",
-        "config/routes.php",
-        "public/index.php"
-      ],
-      "BonneReponse": "routes/web.php",
+      "Questionn": "Quels langages sont utilisés pour structurer et styliser une page web ?",
+      "Reponses": ["HTML", "CSS", "JavaScript", "PHP"],
+      "BonneReponse": ["HTML", "CSS"],
        "plusOption":true
     },
     {
@@ -100,7 +85,7 @@
         "web.php ne fonctionne qu’avec JSON"
       ],
       "BonneReponse":
-        "web.php est utilisé pour les interfaces web avec middleware (sessions, CSRF), tandis que api.php est",
+        ["web.php est utilisé pour les interfaces web avec middleware (sessions, CSRF), tandis que api.php est"],
          "plusOption":false
     }
   ]}
