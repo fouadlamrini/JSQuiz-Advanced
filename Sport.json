@@ -1,35 +1,35 @@
 { "Sport" : [
     {
       "Questionn":
-        "Combien de joueurs y a-t-il dans une équipe de football sur le terrain ?",
-      "Reponses": ["9", "10", "11", "12"],
-      "BonneReponse": "11",
+       "Quels sports sont des sports individuels ?",
+      "Reponses":["Natation", "Athlétisme", "Football", "Basketball"],
+      "BonneReponse": ["Natation", "Athlétisme"],
        "plusOption":true
     },
 
     {
       "Questionn": "Quel pays a remporté la Coupe du Monde de football en 2018 ?",
       "Reponses": ["Allemagne", "France", "Brésil", "Argentine"],
-      "BonneReponse": "France",
+      "BonneReponse": ["France"],
        "plusOption":false
     },
     {
       "Questionn":
         "Dans le basketball, combien de points vaut un tir à 3 points ?",
       "Reponses": ["1", "2", "3", "4"],
-      "BonneReponse": "3",
+      "BonneReponse": ["3"],
        "plusOption":false
     },
     {
       "Questionn": "Quel sport utilise une raquette et un volant ?",
       "Reponses": ["Tennis", "Badminton", "Squash", "Ping-pong"],
-      "BonneReponse": "Badminton",
+      "BonneReponse": ["Badminton"],
        "plusOption":false
     },
     {
-      "Questionn": "Le marathon a une distance officielle de :",
-      "Reponses": ["40 km", "42,195 km", "45 km", "50 km"],
-      "BonneReponse": "42,195 km",
+      "Questionn": "Quels catcheurs sont célèbres dans la WWE ?",
+      "Reponses":  ["John Cena", "Randy Orton", "Usain Bolt", "Michael Phelps"],
+      "BonneReponse": ["John Cena", "Randy Orton"],
        "plusOption":true
     },
     {
@@ -41,33 +41,33 @@
         "Novak Djokovic",
         "Andy Murray"
       ],
-      "BonneReponse": "Rafael Nadal",
+      "BonneReponse": ["Rafael Nadal"],
        "plusOption":false
     },
     {
       "Questionn": "Dans quel sport utilise-t-on le terme “strike” ?",
       "Reponses": ["Baseball", "Football", "Rugby", "Handball"],
-      "BonneReponse": "Baseball",
+      "BonneReponse": ["Baseball"],
        "plusOption":false
     },
     {
       "Questionn":
         "Combien de joueurs y a-t-il dans une équipe de volleyball sur le terrain ?",
       "Reponses": ["5", "6", "7", "8"],
-      "BonneReponse": "6",
+      "BonneReponse": ["6"],
        "plusOption":false
     },
     {
       "Questionn":
-        "Quel pays est considéré comme le berceau des Jeux Olympiques ?",
-      "Reponses": ["Italie", "Grèce", "France", "Égypte"],
-      "BonneReponse": "Grèce",
+        "Quels sports se jouent principalement sur gazon ?",
+      "Reponses": ["Football", "Golf", "Rugby", "Boxe"],
+      "BonneReponse": ["Football", "Golf"],
        "plusOption":true
     },
     {
       "Questionn": "Le Tour de France est une compétition de :",
       "Reponses": ["Natation", "Cyclisme", "Course à pied", "Triathlon"],
-      "BonneReponse": "Cyclisme",
+      "BonneReponse": ["Cyclisme"],
        "plusOption":false
     }
   ]}
