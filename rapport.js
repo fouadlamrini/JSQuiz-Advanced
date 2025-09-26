@@ -39,6 +39,7 @@ user.answers.forEach((answer, i) => {
   if (questionDivs[i]) {
     let spans = questionDivs[i].querySelectorAll("span");
 console.log(answer);
+
 spans[0].textContent = answer.reponseChoisie;
     spans[1].textContent = answer.correctAnswer;
 
