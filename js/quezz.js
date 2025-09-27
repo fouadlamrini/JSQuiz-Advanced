@@ -22,7 +22,7 @@ let time_par_question = document.getElementById("time_par_question");
 let timeQcm; // move here so accessible everywhere
 
 // fetch quiz data
-fetch(quizCategory + ".json")
+fetch("json/"+quizCategory + ".json")
   .then((res) => res.json())
   .then((data) => {
     ObjThem = data;

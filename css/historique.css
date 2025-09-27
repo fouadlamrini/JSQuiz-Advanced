@@ -1,0 +1,84 @@
+/* container */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 12px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* top info box */
+.history {
+  padding: 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  margin-bottom: 12px;
+}
+
+/* each meta line */
+.history p {
+  margin: 6px 0;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+/* questions/answers container */
+.divqst_rep {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* each question card */
+.question-card {
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+/* answer lines inside card */
+.question-card p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* distinction for chosen / correct */
+.reponse-choisie {
+  font-weight: 600;
+}
+.reponse-correcte {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* button area */
+.divButton {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+}
+.divButton .precedent,
+.divButton .next {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.divButton .precedent { background: #f3f4f6; }
+.divButton .next { background: #2563eb; color: white; }
+
+
+
+/* small responsive */
+@media (max-width: 520px) {
+  .container { padding: 10px; margin: 8px; }
+  .history p, .question-card p { font-size: 13px; }
+}
