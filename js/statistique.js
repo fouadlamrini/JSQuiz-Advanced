@@ -39,3 +39,39 @@ let top3 = classement.slice(0, 3).map(utilisateur => utilisateur.name);
 
 let divTop3 = document.getElementById("top3");
 divTop3.textContent = `Top 3 pseudos: ${top3.join(", ")}`;
+//chart js Répartition des parties par thématique.
+let labels = Object.keys(partiesParTheme);
+let data = Object.values(partiesParTheme);
+
+let ctx = document.getElementById('myChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Nombre de parties',
+      data: data,
+      backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF'], 
+      borderColor: '#fff',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false
+      },
+      title: {
+        display: true,
+        text: 'Répartition des parties par thématique'
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        stepSize: 1
+      }
+    }
+  }
+});
