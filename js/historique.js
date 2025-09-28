@@ -1,30 +1,19 @@
-//------------declarer les variables glbale----------
+//------------ déclarer les variables globales ----------
 let btnNext = document.getElementById("next");
 let btnPrecedent = document.getElementById("precedent");
 let utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
 let CountUtilisateur = 0;
 
-//------------fonction affichage historique-----------
+//------------ fonction affichage historique -----------
 function affichageHistorique(x = 0) {
-  if (utilisateurs.length === 0) {
-    // ممكن تعرض رسالة بلا بيانات
-    let divEmpty = document.querySelector(".history");
-    divEmpty.innerHTML = "<p>لا توجد بيانات في localStorage</p>";
-    document.querySelector(".divqst_rep").innerHTML = "";
-    return;
-  }
-
+ 
   CountUtilisateur += x;
-  if (CountUtilisateur >= utilisateurs.length) {
-    CountUtilisateur = 0;
-  }
-  if (CountUtilisateur < 0) {
-    CountUtilisateur = utilisateurs.length - 1;
-  }
+  if (CountUtilisateur >= utilisateurs.length) CountUtilisateur = 0;
+  if (CountUtilisateur < 0) CountUtilisateur = utilisateurs.length - 1;
 
   //--------------- zone historique ----------------
   let div = document.querySelector(".history");
-  div.innerHTML = ""; // vider قبل ما نكتب
+  div.innerHTML = "";
 
   let pseudo = document.createElement("p");
   let score = document.createElement("p");
@@ -42,34 +31,55 @@ function affichageHistorique(x = 0) {
     "/" +
     utilisateurs[CountUtilisateur].Datetime.an;
 
-  // append in order
   div.appendChild(pseudo);
   div.appendChild(score);
   div.appendChild(theme);
   div.appendChild(date);
 
-  //--------------- zone questions/reponses ----------------
+  //--------------- zone questions/réponses ----------------
   let divqst_rep = document.querySelector(".divqst_rep");
-  divqst_rep.innerHTML = ""; // vider قبل ما نكتب
+  divqst_rep.innerHTML = "";
 
   utilisateurs[CountUtilisateur].answers.forEach((ans, index) => {
-    console.log(ans);
-   
     let questionBloc = document.createElement("div");
     questionBloc.classList.add("question-card");
+    questionBloc.style.padding = "10px";
+    questionBloc.style.marginBottom = "8px";
+    questionBloc.style.borderRadius = "6px";
+    questionBloc.style.border = "1px solid #e0e0e0";
 
+    // === changer les valeur a array si il est string ===
+let reponseChoisie;
+if (Array.isArray(ans.reponseChoisie)) {
+  reponseChoisie = ans.reponseChoisie;
+} else {
+  reponseChoisie = [ans.reponseChoisie];
+}
+
+let correctAnswer;
+if (Array.isArray(ans.correctAnswer)) {
+  correctAnswer = ans.correctAnswer;
+} else {
+  correctAnswer = [ans.correctAnswer];
+}
+
+    // === شرط التلوين ===
+    let isCorrect = reponseChoisie.every(el => correctAnswer.includes(el));
+    questionBloc.style.background = isCorrect ? "lightgreen" : "#fca5a5";
+
+    // عنوان السؤال
     let title = document.createElement("p");
     title.textContent = "Question " + (index + 1);
     title.style.fontWeight = "700";
     title.style.marginBottom = "6px";
 
+    // عرض الإجابة المختارة
     let PReponseChoisi = document.createElement("p");
-    PReponseChoisi.classList.add("reponse-choisie");
-    PReponseChoisi.textContent = "Réponse choisie: " + (ans.reponseChoisie ?? "—");
+    PReponseChoisi.textContent = "Réponse choisie: " + reponseChoisie.join(", ");
 
+    // عرض الإجابة الصحيحة
     let PReponseCorrect = document.createElement("p");
-    PReponseCorrect.classList.add("reponse-correcte");
-    PReponseCorrect.textContent = "Réponse correcte: " + (ans.correctAnswer ?? "—");
+    PReponseCorrect.textContent = "Réponse correcte: " + correctAnswer.join(", ");
 
     questionBloc.appendChild(title);
     questionBloc.appendChild(PReponseChoisi);
@@ -79,10 +89,10 @@ function affichageHistorique(x = 0) {
   });
 }
 
-//-----------appel fonction affichage --------------
+//----------- appel fonction affichage --------------
 affichageHistorique();
 
-//-------------------addEventListner----------------
+//------------------- addEventListener ----------------
 btnNext.addEventListener("click", function () {
   affichageHistorique(1);
 });
