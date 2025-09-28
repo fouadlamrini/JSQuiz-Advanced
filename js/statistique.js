@@ -75,3 +75,44 @@ new Chart(ctx, {
     }
   }
 });
+
+//chart js Courbe de progression des scores dans le temps.
+
+let sortedUsers = [...utilisateurs].sort((a, b) => {
+  let dateA = new Date(a.Datetime.an, a.Datetime.mois - 1, a.Datetime.jour);
+  let dateB = new Date(b.Datetime.an, b.Datetime.mois - 1, b.Datetime.jour);
+  return dateA - dateB;
+});
+
+let labelsProgression = sortedUsers.map(u => `${u.Datetime.jour}/${u.Datetime.mois}/${u.Datetime.an}`);
+let dataProgression = sortedUsers.map(u => u.score);
+
+let ctxProgression = document.getElementById('progressionChart').getContext('2d');
+
+new Chart(ctxProgression, {
+  type: 'line',
+  data: {
+    labels: labelsProgression,
+    datasets: [{
+      label: 'Scores dans le temps',
+      data: dataProgression,
+      fill: false,
+      borderColor: '#36A2EB',
+      tension: 0.1,
+      pointBackgroundColor: '#FF6384',
+      pointRadius: 5
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true },
+      title: { display: true, text: 'Courbe de progression des scores' }
+    },
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
