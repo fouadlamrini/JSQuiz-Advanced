@@ -116,3 +116,38 @@ new Chart(ctxProgression, {
     }
   }
 });
+
+//Export de l’historique/statistiques  JSON.
+function exportJSON() {
+  const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+  const dataStr = JSON.stringify(utilisateurs, null, 2); // 2 = indentation
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "historique.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}//Export de l’historique/statistiques CSV
+function exportCSV() {
+  const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+
+  if (utilisateurs.length === 0) return;
+  const headers = ["name", "theme", "score", "date", "answers"];
+  const rows = utilisateurs.map(u => {
+    const dateStr = `${u.Datetime.jour}/${u.Datetime.mois}/${u.Datetime.an}`;
+    const answersStr = u.answers.map(a => `Choisi: ${a.reponseChoisie} | Correct: ${a.correctAnswer}`).join(" ; ");
+    return [u.name, u.theme, u.score, dateStr, answersStr].map(field => `"${field}"`).join(",");
+  });
+
+  const csvContent = [headers.join(","), ...rows].join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "historique.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
