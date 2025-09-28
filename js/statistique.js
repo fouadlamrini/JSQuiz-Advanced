@@ -32,3 +32,10 @@ let scores = utilisateurs.map(utilisateur => utilisateur.score);
 let meilleurScore = scores.reduce((max, score) => Math.max(max, score), 0);
 let divMeilleur=document.getElementById('meilleur');
 divMeilleur.textContent=meilleurScore;
+
+let classement = [...utilisateurs].sort((a, b) => b.score - a.score);
+
+let top3 = classement.slice(0, 3).map(utilisateur => utilisateur.name);
+
+let divTop3 = document.getElementById("top3");
+divTop3.textContent = `Top 3 pseudos: ${top3.join(", ")}`;
