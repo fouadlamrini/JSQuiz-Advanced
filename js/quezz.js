@@ -19,18 +19,32 @@ let allow = true;
 let score = 0;
 let selectedAnswers = [];
 let time_par_question = document.getElementById("time_par_question");
-let timeQcm; // move here so accessible everywhere
+let timeQcm; 
 
 // fetch quiz data
-fetch("json/"+quizCategory + ".json")
-  .then((res) => res.json())
-  .then((data) => {
+// fetch("json/"+quizCategory + ".json")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     ObjThem = data;
+//     afficherQst(0); 
+//     startTimer();
+//     optionChoisir();
+//   })
+//   .catch((err) => console.error(err));
+async function chargerQuiz() {
+  try {
+    const res = await fetch("json/" + quizCategory + ".json");
+    const data = await res.json();
     ObjThem = data;
-    afficherQst(0); // show first question
+
+    afficherQst(0);
     startTimer();
     optionChoisir();
-  })
-  .catch((err) => console.error(err));
+  } catch (err) {
+    console.error(err);
+  }
+}
+chargerQuiz();
 
 // ---------- Functions ----------
 
@@ -41,14 +55,14 @@ function startTimer() {
       time_par_question.textContent--;
 
       if (time_par_question.textContent == 0) {
-        // Save "No Selection"
+        
         saveResult(
           "No Selection",
           ObjThem[quizCategory][NumQst].BonneReponse,
           score
         );
 
-        // Check if last question
+        
         if (NumQst >= ObjThem[quizCategory].length - 1) {
           clearInterval(timeQcm); // stop timer!
           btnSuivant.textContent = "Valider";
@@ -82,7 +96,7 @@ function afficherQst(x) {
     btnSuivant.classList.remove("valider");
   }
 
-  // reset
+ 
   clicked = false;
   allow = true;
   next = false;
@@ -103,9 +117,8 @@ function afficherQst(x) {
     input.disabled = false;
   });
 
-  // reset option backgrounds
-  document
-    .querySelectorAll(".option label")
+
+  document.querySelectorAll(".option label")
     .forEach((label) => (label.style.backgroundColor = ""));
 }
 
@@ -117,16 +130,15 @@ function optionChoisir() {
       const currentQuestion = ObjThem[quizCategory][NumQst];
       const answerText = option.querySelector("span").textContent;
 
-      if (clicked) return; // prevent multiple clicks
+      if (clicked) return; 
 
-      // For multi-choice: track selected answers
+      
       if (currentQuestion.plusOption) {
         if (!selectedAnswers.includes(answerText)) selectedAnswers.push(answerText);
 
-        // Only check when enough answers are selected
         if (selectedAnswers.length !== currentQuestion.BonneReponse.length) return;
       } else {
-        selectedAnswers = [answerText]; // single choice
+        selectedAnswers = [answerText]; 
       }
 
       clicked = true;
@@ -134,29 +146,28 @@ function optionChoisir() {
       next = true;
       inputs.forEach((input) => (input.disabled = true));
 
-      // Color all options
       options.forEach((opt) => {
         const text = opt.querySelector("span").textContent;
         const label = opt.querySelector("label");
 
         if (currentQuestion.BonneReponse.includes(text)) {
-          // Correct answer
+          
           if (selectedAnswers.includes(text)) {
-            label.style.backgroundColor = "lightgreen"; // user selected correct
+            label.style.backgroundColor = "lightgreen"; 
           } else {
-            label.style.backgroundColor = "#7fb9ffff"; // correct but not selected
+            label.style.backgroundColor = "#7fb9ffff"; 
           }
         } else {
-          // Wrong answer
+        
           if (selectedAnswers.includes(text)) {
-            label.style.backgroundColor = "#ff7f7f"; // user selected wrong
+            label.style.backgroundColor = "#ff7f7f"; 
           } else {
-            label.style.backgroundColor = ""; // unselected wrong
+            label.style.backgroundColor = "";
           }
         }
       });
 
-      // Update score
+      
       const allCorrect = selectedAnswers.every((ans) =>
         currentQuestion.BonneReponse.includes(ans)
       );

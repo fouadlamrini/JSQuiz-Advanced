@@ -120,7 +120,7 @@ new Chart(ctxProgression, {
 //Export de l’historique/statistiques  JSON.
 function exportJSON() {
   const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
-  const dataStr = JSON.stringify(utilisateurs, null, 2); // 2 = indentation
+  const dataStr = JSON.stringify(utilisateurs, null, 2); 
   const blob = new Blob([dataStr], { type: "application/json" });
   const url = URL.createObjectURL(blob);
 
