@@ -34,9 +34,11 @@ let timeQcm;
 async function chargerQuiz() {
   try {
     const res = await fetch("json/" + quizCategory + ".json");
+    
     const data = await res.json();
+   
     ObjThem = data;
-
+    
     afficherQst(0);
     startTimer();
     optionChoisir();
@@ -104,6 +106,7 @@ function afficherQst(x) {
   time_par_question.textContent = 15;
 
   const currentQuestion = ObjThem[quizCategory][NumQst];
+ 
   question.textContent = currentQuestion.Questionn;
   choix1.textContent = currentQuestion.Reponses[0];
   choix2.textContent = currentQuestion.Reponses[1];
@@ -131,8 +134,6 @@ function optionChoisir() {
       const answerText = option.querySelector("span").textContent;
 
       if (clicked) return; 
-
-      
       if (currentQuestion.plusOption) {
         if (!selectedAnswers.includes(answerText)) selectedAnswers.push(answerText);
 

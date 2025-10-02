@@ -10,7 +10,9 @@ document.getElementById("download").addEventListener("click", () => {
 // });
 
 let data = JSON.parse(localStorage.getItem("utilisateurs"));
+
 let user = data[data.length - 1];
+
 let jour=document.getElementById("jour");
 let mois=document.getElementById("mois");
 let an=document.getElementById("an");

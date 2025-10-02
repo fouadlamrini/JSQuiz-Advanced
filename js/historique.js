@@ -63,21 +63,21 @@ if (Array.isArray(ans.correctAnswer)) {
   correctAnswer = [ans.correctAnswer];
 }
 
-    // === شرط التلوين ===
+    // == condition des couleur ===
     let isCorrect = reponseChoisie.every(el => correctAnswer.includes(el));
     questionBloc.style.background = isCorrect ? "lightgreen" : "#fca5a5";
 
-    // عنوان السؤال
+    //  titre de question
     let title = document.createElement("p");
     title.textContent = "Question " + (index + 1);
     title.style.fontWeight = "700";
     title.style.marginBottom = "6px";
 
-    // عرض الإجابة المختارة
+    //   afficher la reponse choisi
     let PReponseChoisi = document.createElement("p");
     PReponseChoisi.textContent = "Réponse choisie: " + reponseChoisie.join(", ");
 
-    // عرض الإجابة الصحيحة
+    //   afficher la reponse correcte
     let PReponseCorrect = document.createElement("p");
     PReponseCorrect.textContent = "Réponse correcte: " + correctAnswer.join(", ");
 
