@@ -156,7 +156,7 @@ function optionChoisir() {
           if (selectedAnswers.includes(text)) {
             label.style.backgroundColor = "lightgreen"; 
           } else {
-            label.style.backgroundColor = "#7fb9ffff"; 
+            label.style.backgroundColor = "#0c64cfff"; 
           }
         } else {
         
