@@ -29,13 +29,10 @@ else{
 jour.textContent=user.Datetime.jour;
 mois.textContent=user.Datetime.mois;
 an.textContent=user.Datetime.an;
-
 document.querySelector(".score").textContent = user.score;
 document.querySelector(".theme").textContent = user.theme;
 document.querySelector(".Utilisateur").textContent = user['name'];
-
 let questionDivs = document.querySelectorAll(".Correction div");
-
 user.answers.forEach((answer, i) => {
   // console.log(questionDivs[i]);
   if (questionDivs[i]) {
