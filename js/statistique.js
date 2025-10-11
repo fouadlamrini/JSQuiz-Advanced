@@ -65,21 +65,13 @@ new Chart(ctx, {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: { top: 6, bottom: 6, left: 6, right: 6 } },
     plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: "Répartition des parties par thématique",
-      },
+      legend: { display: false },
+      title: { display: true, text: "Répartition des parties par thématique" },
     },
-    scales: {
-      y: {
-        beginAtZero: true,
-        stepSize: 1,
-      },
-    },
+    scales: { y: { beginAtZero: true, stepSize: 1 } },
   },
 });
 
@@ -118,15 +110,14 @@ new Chart(ctxProgression, {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: { top: 6, bottom: 6, left: 6, right: 6 } },
     plugins: {
       legend: { display: true },
       title: { display: true, text: "Courbe de progression des scores" },
     },
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
+    elements: { point: { radius: 4 } },
+    scales: { y: { beginAtZero: true } },
   },
 });
 

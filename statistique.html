@@ -31,16 +31,21 @@
 
   </div>
 
-  <div style="width: 500px; height: 300px;">
-  <canvas  id="myChart"></canvas>
-</div>
-<div style="width: 600px; height: 300px;">
-  <canvas id="progressionChart"></canvas>
-</div>
-<div class="btn-container">
-  <button class="btn" onclick="exportJSON()">Exporter JSON</button>
-  <button class="btn" onclick="exportCSV()">Exporter CSV</button>
-</div>
+  <!-- Export buttons placed above charts for better UX -->
+  <div class="btn-container">
+    <button class="btn" onclick="exportJSON()">Exporter JSON</button>
+    <button class="btn" onclick="exportCSV()">Exporter CSV</button>
+  </div>
+
+  <!-- Charts area: two charts side-by-side on wide screens, stacked on small screens -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <canvas id="myChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <canvas id="progressionChart"></canvas>
+    </div>
+  </div>
 
   <script src="js/statistique.js"></script>
 </body>

@@ -21,12 +21,56 @@ body{
 }
 
 /* top buttons */
-.container > div:first-child {
+.top-row{
   display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-bottom:20px;
+  justify-content:center; /* center all 4 controls */
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  flex-wrap:wrap; /* wrap on small screens */
 }
+
+.top-row .top-controls{ display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; }
+
+/* Force consistent sizing and alignment for the four top controls */
+.top-controls > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px; /* uniform height */
+  box-sizing: border-box;
+}
+.top-controls .btn, .divButton.top-nav button{
+  padding: 8px 14px;
+  height: 40px;
+  line-height: 1;
+}
+.top-controls .btn{ white-space:nowrap; }
+
+/* Make the top links visually match the Prev/Next buttons so all 4 look unified */
+.top-row .top-controls .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:600;
+  text-decoration:none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+/* First link (Voir Statistique) as primary gradient like .next */
+.top-controls > .btn:first-of-type{
+  background: linear-gradient(45deg, #4f46e5, #6ee7b7);
+  color:#fff;
+}
+/* Second link (Retour a Rapport) as neutral like .precedent */
+.top-controls > .btn:nth-of-type(2){
+  background: #f3f4f6;
+  color:#333;
+}
+.top-row .top-controls .btn:hover{ transform: translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.15); }
 
 .container > div:first-child a{
   padding:10px 18px;
@@ -92,6 +136,8 @@ body{
   cursor:pointer;
   transition: all 0.3s ease;
 }
+.divButton.top-nav{ margin:0; display:flex; gap:8px; align-items:center; }
+.divButton.top-nav .precedent, .divButton.top-nav .next{ padding:8px 12px; font-size:14px; }
 .divButton .precedent{
   background: #f3f4f6;
   color:#333;
