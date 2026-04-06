@@ -17,14 +17,24 @@ let jour=document.getElementById("jour");
 let mois=document.getElementById("mois");
 let an=document.getElementById("an");
 let feedback=document.getElementById("feedback");
+let resultName = document.querySelector(".result-name");
 if(Number(user.score)<50){
   feedback.textContent="Tu peut faire le mieux";
+  if (resultName) {
+    resultName.textContent = `${user.name}, Revise encore, tu peux faire mieux.`;
+  }
 }
 else if(Number(user.score)==100){
  feedback.textContent="Excellent travail";
+ if (resultName) {
+  resultName.textContent = `${user.name}, Excellent travail !`;
+ }
 }
 else{
   feedback.textContent="passable";
+  if (resultName) {
+    resultName.textContent = `${user.name}, Continue, tu es sur la bonne voie.`;
+  }
 }
 jour.textContent=user.Datetime.jour;
 mois.textContent=user.Datetime.mois;

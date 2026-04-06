@@ -20,38 +20,46 @@
 </head>
 
 <body>
-    <div class="container">
+    <header class="top-header">
+        <h1 class="app-title">QuizNova</h1>
+    </header>
 
-        <div class="UserName">
-            <p class="Name"> Entrer Votre Nom d'Utilisateur SVP</p>
-            <input id="input_name" type="text" placeholder="  Exemple:Fouad " class="input_name">
-            <p id="Error" class="Error"></p>
+    <main class="page-wrap">
+        <div class="last-score-banner">
+            <p>Votre dernier score : <span id="lastScoreValue">/ 10</span></p>
         </div>
-        <div class="theme">
-            <p class="theme1">Choisir Le theme</p>
-            <Select id="ChoixTheme" class="ChoixTheme">
-                <option value="Theme">Theme</option>
-                <option value="Programation">Programation</option>
-                <option value="Math">Math</option>
-                <option value="Sport">Sport</option>
-            </Select>
-            <p id="Error1" class="Error"></p>
+
+        <div class="container">
+            <div class="UserName">
+                <p class="Name">Votre pseudo:</p>
+                <input id="input_name" type="text" placeholder="Exemple: Fouad" class="input_name">
+                <p id="Error" class="Error"></p>
+            </div>
+
+            <div class="theme">
+                <p class="theme1">Choisissez une thématique:</p>
+                <input id="ChoixTheme" type="hidden" value="Theme">
+                <div class="theme-cards">
+                    <div class="theme-card theme-programation" data-theme="Programation">
+                        <span>Programation</span>
+                    </div>
+                    <div class="theme-card theme-math" data-theme="Math">
+                        <span>Math</span>
+                    </div>
+                    <div class="theme-card theme-sport" data-theme="Sport">
+                        <span>Sport</span>
+                    </div>
+                </div>
+                <p id="Error1" class="Error"></p>
+            </div>
+
+            <button id="StartQuiz" class="StartQuiz">Commencer le Quiz <span class="material-symbols-outlined">
+                    arrow_forward
+                </span></button>
         </div>
-        
-            <button id="StartQuiz" class="StartQuiz">Start   <span class="material-symbols-outlined">
-                arrow_forward
-            </span> </button>
-           
-       
-
-
-    </div>
-
-
-
+    </main>
 
     <script src="js/script.js"></script>
-   
 </body>
 
 </html>

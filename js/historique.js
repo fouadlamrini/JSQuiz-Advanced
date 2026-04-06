@@ -43,10 +43,6 @@ function affichageHistorique(x = 0) {
   utilisateurs[CountUtilisateur].answers.forEach((ans, index) => {
     let questionBloc = document.createElement("div");
     questionBloc.classList.add("question-card");
-    questionBloc.style.padding = "10px";
-    questionBloc.style.marginBottom = "8px";
-    questionBloc.style.borderRadius = "6px";
-    questionBloc.style.border = "1px solid #e0e0e0";
 
     // === changer les valeur a array si il est string ===
 let reponseChoisie;
@@ -65,7 +61,7 @@ if (Array.isArray(ans.correctAnswer)) {
 
     // == condition des couleur ===
     let isCorrect = reponseChoisie.every(el => correctAnswer.includes(el));
-    questionBloc.style.background = isCorrect ? "lightgreen" : "#fca5a5";
+    questionBloc.style.background = isCorrect ? "rgba(22, 214, 146, 0.2)" : "rgba(255, 121, 152, 0.2)";
 
     //  titre de question
     let title = document.createElement("p");

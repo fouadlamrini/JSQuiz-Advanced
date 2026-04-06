@@ -1,79 +1,199 @@
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #4f46e5, #6ee7b7);
-    }
+body {
+  min-height: 100vh;
+  color: #f7f7ff;
+  background: radial-gradient(circle at top left, #26135f 0%, #070716 45%, #050612 100%);
+}
 
-    .container {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      width: 350px;
-      padding: 30px;
-      color: #fff;
-      text-align: center;
-    }
+.top-header {
+  width: 100%;
+  padding: 18px 24px;
+  text-align: center;
+  background: rgba(8, 9, 23, 0.88);
+  border-bottom: 1px solid rgba(171, 138, 255, 0.15);
+}
 
-    .container p {
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
+.app-title {
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #b58cff;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      font-size: 14px;
-      margin-bottom: 10px;
-      transition: all 0.3s ease;
-    }
+.page-wrap {
+  max-width: 960px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
 
-    input:focus,
-    select:focus {
-      box-shadow: 0 0 5px #6ee7b7;
-    }
+.last-score-banner {
+  max-width: 720px;
+  margin: 0 auto 22px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  background: linear-gradient(90deg, #6a2ef0, #9a4dff);
+  box-shadow: 0 10px 24px rgba(102, 52, 208, 0.38);
+}
 
-    .Error {
-      color: #ff7b7b;
-      font-size: 13px;
-      text-align: left;
-      margin-bottom: 5px;
-    }
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 30px;
+  border: 1px solid rgba(148, 121, 255, 0.18);
+  border-radius: 20px;
+  background: rgba(15, 18, 39, 0.84);
+  box-shadow: 0 20px 40px rgba(5, 7, 18, 0.5);
+}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(to right, #4f46e5, #6ee7b7);
-      color: white;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: 0.3s ease;
-    }
+.Name,
+.theme1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 14px;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+.theme1 {
+  margin-top: 20px;
+}
 
-    .material-symbols-outlined {
-      font-size: 20px;
-    }
+input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+  font-size: 1rem;
+}
+
+input:focus,
+input:focus {
+  border-color: #9a6bff;
+  box-shadow: 0 0 0 3px rgba(154, 107, 255, 0.22);
+}
+
+.theme-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.theme-card {
+  height: 78px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 8, 20, 0.25), rgba(5, 8, 20, 0.7));
+}
+
+.theme-card span {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  z-index: 1;
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(9, 11, 24, 0.64);
+}
+
+.theme-card:hover {
+  transform: translateY(-2px);
+}
+
+.theme-card.selected {
+  border-color: #b57cff;
+  box-shadow: 0 0 0 3px rgba(181, 124, 255, 0.3), 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+.theme-programation {
+  background-image: url("../images/javascript.webp");
+}
+
+.theme-math {
+  background-image: url("../images/math-102023-1281244731-01.jpg");
+}
+
+.theme-sport {
+  background-image: url("../images/sports-balls.jpg");
+}
+
+.Error {
+  color: #ff7e97;
+  min-height: 22px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.StartQuiz {
+  margin: 18px auto 0;
+  width: 280px;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #7b35ff, #b157ff);
+  box-shadow: 0 10px 22px rgba(125, 69, 255, 0.42);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.StartQuiz:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(125, 69, 255, 0.5);
+}
+
+.material-symbols-outlined {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 24px 18px;
+  }
+
+  .Name,
+  .theme1 {
+    font-size: 1.7rem;
+  }
+
+  .StartQuiz {
+    width: 100%;
+  }
+
+  .theme-cards {
+    grid-template-columns: 1fr;
+  }
+}

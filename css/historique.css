@@ -1,187 +1,110 @@
-body{
-  margin:0;
-  padding:0;
-  font-family:'Poppins', sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-  background: linear-gradient(135deg, #667eea, #50e3c2);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-.container{
-  max-width:900px;
-  width:90%;
-  padding:25px;
-  border-radius:20px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  color:#fff;
+body {
+  min-height: 100vh;
+  color: #f7f7ff;
+  background: radial-gradient(circle at top left, #26135f 0%, #070716 45%, #050612 100%);
 }
 
-/* top buttons */
-.top-row{
-  display:flex;
-  justify-content:center; /* center all 4 controls */
-  align-items:center;
-  gap:12px;
-  margin-bottom:14px;
-  flex-wrap:wrap; /* wrap on small screens */
+.top-header {
+  width: 100%;
+  padding: 18px 24px;
+  text-align: center;
+  background: rgba(8, 9, 23, 0.88);
+  border-bottom: 1px solid rgba(171, 138, 255, 0.15);
+  margin-bottom: 22px;
 }
 
-.top-row .top-controls{ display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; }
+.app-title {
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #b58cff;
+}
 
-/* Force consistent sizing and alignment for the four top controls */
-.top-controls > * {
+.container {
+  width: min(920px, calc(100% - 24px));
+  margin: 0 auto 20px;
+  padding: 22px 18px 26px;
+  border: 1px solid rgba(148, 121, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(15, 18, 39, 0.84);
+  box-shadow: 0 20px 40px rgba(5, 7, 18, 0.5);
+}
+
+.top-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.top-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn,
+.divButton button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px; /* uniform height */
-  box-sizing: border-box;
-}
-.top-controls .btn, .divButton.top-nav button{
-  padding: 8px 14px;
-  height: 40px;
-  line-height: 1;
-}
-.top-controls .btn{ white-space:nowrap; }
-
-/* Make the top links visually match the Prev/Next buttons so all 4 look unified */
-.top-row .top-controls .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:8px 12px;
-  border-radius:10px;
-  font-weight:600;
-  text-decoration:none;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-/* First link (Voir Statistique) as primary gradient like .next */
-.top-controls > .btn:first-of-type{
-  background: linear-gradient(45deg, #4f46e5, #6ee7b7);
-  color:#fff;
-}
-/* Second link (Retour a Rapport) as neutral like .precedent */
-.top-controls > .btn:nth-of-type(2){
-  background: #f3f4f6;
-  color:#333;
-}
-.top-row .top-controls .btn:hover{ transform: translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.15); }
-
-.container > div:first-child a{
-  padding:10px 18px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:600;
-  color:#fff;
-  background: linear-gradient(45deg, #4f46e5, #6ee7b7);
-  transition: all 0.3s ease;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-height: 40px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(90deg, #7b35ff, #b157ff);
+  box-shadow: 0 10px 22px rgba(125, 69, 255, 0.32);
 }
 
-.container > div:first-child a:hover{
-  transform: translateY(-2px);
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+.divButton .precedent {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
 }
 
-/* history box */
-.history{
-  padding:15px;
-  border-radius:15px;
-  background: rgba(255,255,255,0.2);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  margin-bottom:15px;
+.history {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
-/* question cards */
-.question-card{
-  padding:12px;
-  border-radius:12px;
-  background: rgba(255,255,255,0.25);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-bottom:10px;
-  transition: all 0.3s ease;
+.history p {
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.question-card:hover{
-  transform: translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+.divqst_rep {
+  display: grid;
+  gap: 10px;
 }
 
-/* chosen/correct answers */
-.reponse-choisie{
-  font-weight:700;
-  color:#ffca28;
-}
-.reponse-correcte{
-  font-weight:600;
-  color:#4f46e5;
+.question-card {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
 }
 
-/* nav buttons */
-.divButton{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-top:20px;
-}
-.divButton button{
-  padding:10px 18px;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-  transition: all 0.3s ease;
-}
-.divButton.top-nav{ margin:0; display:flex; gap:8px; align-items:center; }
-.divButton.top-nav .precedent, .divButton.top-nav .next{ padding:8px 12px; font-size:14px; }
-.divButton .precedent{
-  background: #f3f4f6;
-  color:#333;
-}
-.divButton .precedent:hover{
-  background: #e0e0e0;
-}
-.divButton .next{
-  background: linear-gradient(45deg, #4f46e5, #6ee7b7);
-  color:#fff;
-}
-.divButton .next:hover{
-  transform: translateY(-2px);
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+.question-card p:first-child {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
-.btn-container{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin-bottom:20px;
-}
-
-.btn{
-  display:inline-block;
-  padding:10px 20px;
-  border-radius:10px;
-  background: linear-gradient(45deg, #4f46e5, #6ee7b7);
-  color:#fff;
-  font-weight:600;
-  text-decoration:none;
-  text-align:center;
-  transition: all 0.3s ease;
-}
-
-.btn:hover{
-  transform: translateY(-3px);
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-
-
-/* responsive */
-@media(max-width:520px){
-  .container{padding:15px;}
-  .history p, .question-card p{font-size:14px;}
-  .container > div:first-child a{padding:8px 12px; font-size:14px;}
+@media (max-width: 640px) {
+  .history {
+    grid-template-columns: 1fr;
+  }
 }

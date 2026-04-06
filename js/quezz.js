@@ -20,6 +20,8 @@ let score = 0;
 let selectedAnswers = [];
 let time_par_question = document.getElementById("time_par_question");
 let timeQcm; 
+const timerBarFill = document.querySelector(".timer-bar-fill");
+const timeSide = document.getElementById("time_side");
 
 // fetch quiz data
 // fetch("json/"+quizCategory + ".json")
@@ -52,9 +54,11 @@ chargerQuiz();
 
 function startTimer() {
   time_par_question.textContent = 15;
+  updateQuestionTimerUI(15);
   timeQcm = setInterval(() => {
     if (allow) {
       time_par_question.textContent--;
+      updateQuestionTimerUI(Number(time_par_question.textContent));
 
       if (time_par_question.textContent == 0) {
         
@@ -104,6 +108,7 @@ function afficherQst(x) {
   next = false;
   selectedAnswers = [];
   time_par_question.textContent = 15;
+  updateQuestionTimerUI(15);
 
   const currentQuestion = ObjThem[quizCategory][NumQst];
  
@@ -123,6 +128,15 @@ function afficherQst(x) {
 
   document.querySelectorAll(".option label")
     .forEach((label) => (label.style.backgroundColor = ""));
+}
+
+function updateQuestionTimerUI(currentTime) {
+  const maxTime = 15;
+  const safeValue = Math.max(0, Math.min(maxTime, currentTime));
+  const widthPercent = (safeValue / maxTime) * 100;
+
+  if (timerBarFill) timerBarFill.style.width = `${widthPercent}%`;
+  if (timeSide) timeSide.textContent = safeValue;
 }
 
 function optionChoisir() {
