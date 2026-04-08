@@ -1,6 +1,7 @@
 let ObjThem = {};
 const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
-let quizCategory = utilisateurs[utilisateurs.length - 1]["theme"];
+// افتراض أن هناك مستخدم مسجل مسبقاً لاختبار الكود
+let quizCategory = utilisateurs.length > 0 ? utilisateurs[utilisateurs.length - 1]["theme"] : "php"; 
 
 let question = document.getElementById("question");
 let choix1 = document.getElementById("choix1");
@@ -23,205 +24,149 @@ let timeQcm;
 const timerBarFill = document.querySelector(".timer-bar-fill");
 const timeSide = document.getElementById("time_side");
 
-// fetch quiz data
-// fetch("json/"+quizCategory + ".json")
-//   .then((res) => res.json())
-//   .then((data) => {
-//     ObjThem = data;
-//     afficherQst(0); 
-//     startTimer();
-//     optionChoisir();
-//   })
-//   .catch((err) => console.error(err));
 async function chargerQuiz() {
-  try {
-    const res = await fetch("json/" + quizCategory + ".json");
-    
-    const data = await res.json();
-   
-    ObjThem = data;
-    
-    afficherQst(0);
-    startTimer();
-    optionChoisir();
-  } catch (err) {
-    console.error(err);
-  }
+    try {
+        const res = await fetch("json/" + quizCategory + ".json");
+        const data = await res.json();
+        ObjThem = data;
+        afficherQst(0);
+        startTimer();
+        optionChoisir();
+    } catch (err) {
+        console.error("Erreur de chargement:", err);
+        question.textContent = "Erreur: Fichier JSON introuvable.";
+    }
 }
 chargerQuiz();
 
-// ---------- Functions ----------
-
 function startTimer() {
-  time_par_question.textContent = 15;
-  updateQuestionTimerUI(15);
-  timeQcm = setInterval(() => {
-    if (allow) {
-      time_par_question.textContent--;
-      updateQuestionTimerUI(Number(time_par_question.textContent));
+    let timeLeft = 15;
+    updateQuestionTimerUI(timeLeft);
+    
+    timeQcm = setInterval(() => {
+        if (allow) {
+            timeLeft--;
+            time_par_question.textContent = timeLeft;
+            updateQuestionTimerUI(timeLeft);
 
-      if (time_par_question.textContent == 0) {
-        
-        saveResult(
-          "No Selection",
-          ObjThem[quizCategory][NumQst].BonneReponse,
-          score
-        );
-
-        
-        if (NumQst >= ObjThem[quizCategory].length - 1) {
-          clearInterval(timeQcm); // stop timer!
-          btnSuivant.textContent = "Valider";
-          btnSuivant.classList.add("valider");
-          btnSuivant.addEventListener("click", () => {
-            window.location.href = "rapport.html";
-          });
-        } else {
-          next = true;
-          afficherQst(1);
+            if (timeLeft <= 0) {
+                handleNextQuestion();
+            }
         }
-      }
-    }
-  }, 1000);
+    }, 1000);
 }
 
+function handleNextQuestion() {
+    saveResult("No Selection", ObjThem[quizCategory][NumQst].BonneReponse, score);
+    if (NumQst >= ObjThem[quizCategory].length - 1) {
+        finishQuiz();
+    } else {
+        next = true;
+        afficherQst(1);
+    }
+}
 
 function afficherQst(x) {
-  if (!next && x !== 0) return;
+    if (!next && x !== 0) return;
 
-  NumQst += x;
-  if (NumQst >= ObjThem[quizCategory].length) {
-    btnSuivant.textContent = "Valider";
-    btnSuivant.classList.add("valider");
-    btnSuivant.addEventListener("click", () => {
-      window.location.href = "rapport.html";
+    NumQst += x;
+    if (NumQst >= ObjThem[quizCategory].length) {
+        finishQuiz();
+        return;
+    }
+
+    clicked = false;
+    allow = true;
+    next = false;
+    selectedAnswers = [];
+    time_par_question.textContent = 15;
+    updateQuestionTimerUI(15);
+
+    const currentQuestion = ObjThem[quizCategory][NumQst];
+    question.textContent = currentQuestion.Questionn;
+    choix1.textContent = currentQuestion.Reponses[0];
+    choix2.textContent = currentQuestion.Reponses[1];
+    choix3.textContent = currentQuestion.Reponses[2];
+    choix4.textContent = currentQuestion.Reponses[3];
+    nbr_question.textContent = `${NumQst + 1}/${ObjThem[quizCategory].length}`;
+
+    inputs.forEach((input) => {
+        input.type = currentQuestion.plusOption ? "checkbox" : "radio";
+        input.checked = false;
+        input.disabled = false;
     });
-    return;
-  } else {
-    btnSuivant.textContent = "Suivant";
-    btnSuivant.classList.remove("valider");
-  }
 
- 
-  clicked = false;
-  allow = true;
-  next = false;
-  selectedAnswers = [];
-  time_par_question.textContent = 15;
-  updateQuestionTimerUI(15);
-
-  const currentQuestion = ObjThem[quizCategory][NumQst];
- 
-  question.textContent = currentQuestion.Questionn;
-  choix1.textContent = currentQuestion.Reponses[0];
-  choix2.textContent = currentQuestion.Reponses[1];
-  choix3.textContent = currentQuestion.Reponses[2];
-  choix4.textContent = currentQuestion.Reponses[3];
-  nbr_question.textContent = `${NumQst + 1}/${ObjThem[quizCategory].length}`;
-
-  inputs.forEach((input) => {
-    input.type = currentQuestion.plusOption ? "checkbox" : "radio";
-    input.checked = false;
-    input.disabled = false;
-  });
-
-
-  document.querySelectorAll(".option label")
-    .forEach((label) => (label.style.backgroundColor = ""));
+    document.querySelectorAll(".option label").forEach(l => l.style.backgroundColor = "");
 }
 
 function updateQuestionTimerUI(currentTime) {
-  const maxTime = 15;
-  const safeValue = Math.max(0, Math.min(maxTime, currentTime));
-  const widthPercent = (safeValue / maxTime) * 100;
-
-  if (timerBarFill) timerBarFill.style.width = `${widthPercent}%`;
-  if (timeSide) timeSide.textContent = safeValue;
+    const widthPercent = (currentTime / 15) * 100;
+    if (timerBarFill) timerBarFill.style.width = `${widthPercent}%`;
+    if (timeSide) timeSide.textContent = currentTime;
 }
 
 function optionChoisir() {
-  const options = document.querySelectorAll(".option");
+    const options = document.querySelectorAll(".option");
+    options.forEach((option) => {
+        option.addEventListener("click", () => {
+            if (clicked) return;
+            const currentQuestion = ObjThem[quizCategory][NumQst];
+            const answerText = option.querySelector("span").textContent;
 
-  options.forEach((option) => {
-    option.addEventListener("click", () => {
-      const currentQuestion = ObjThem[quizCategory][NumQst];
-      const answerText = option.querySelector("span").textContent;
+            if (currentQuestion.plusOption) {
+                if (!selectedAnswers.includes(answerText)) selectedAnswers.push(answerText);
+                if (selectedAnswers.length !== currentQuestion.BonneReponse.length) return;
+            } else {
+                selectedAnswers = [answerText];
+            }
 
-      if (clicked) return; 
-      if (currentQuestion.plusOption) {
-        if (!selectedAnswers.includes(answerText)) selectedAnswers.push(answerText);
+            validateChoice(currentQuestion, options);
+        });
+    });
+}
 
-        if (selectedAnswers.length !== currentQuestion.BonneReponse.length) return;
-      } else {
-        selectedAnswers = [answerText]; 
-      }
+function validateChoice(currentQuestion, options) {
+    clicked = true;
+    allow = false;
+    next = true;
+    inputs.forEach(i => i.disabled = true);
 
-      clicked = true;
-      allow = false;
-      next = true;
-      inputs.forEach((input) => (input.disabled = true));
-
-      options.forEach((opt) => {
+    options.forEach((opt) => {
         const text = opt.querySelector("span").textContent;
         const label = opt.querySelector("label");
-
         if (currentQuestion.BonneReponse.includes(text)) {
-          
-          if (selectedAnswers.includes(text)) {
-            label.style.backgroundColor = "lightgreen"; 
-          } else {
-            label.style.backgroundColor = "#0c64cfff"; 
-          }
-        } else {
-        
-          if (selectedAnswers.includes(text)) {
-            label.style.backgroundColor = "#ff7f7f"; 
-          } else {
-            label.style.backgroundColor = "";
-          }
+            label.style.backgroundColor = selectedAnswers.includes(text) ? "#22c55e" : "#3b82f6";
+        } else if (selectedAnswers.includes(text)) {
+            label.style.backgroundColor = "#ef4444";
         }
-      });
-
-      
-      const allCorrect = selectedAnswers.every((ans) =>
-        currentQuestion.BonneReponse.includes(ans)
-      );
-      if (allCorrect) score += 10;
-      scoreDisplay.textContent = score;
-
-      // Save results
-      saveResult(
-        currentQuestion.plusOption ? selectedAnswers : answerText,
-        currentQuestion.BonneReponse,
-        score
-      );
     });
-  });
+
+    const isCorrect = selectedAnswers.every(ans => currentQuestion.BonneReponse.includes(ans));
+    if (isCorrect) score += 10;
+    scoreDisplay.textContent = score;
+    saveResult(selectedAnswers, currentQuestion.BonneReponse, score);
 }
 
+function finishQuiz() {
+    clearInterval(timeQcm);
+    btnSuivant.textContent = "Valider";
+    btnSuivant.onclick = () => window.location.href = "rapport.html";
+}
 
 function saveResult(reponseChoisie, correctAnswer, scoreValue) {
-  let utilisateurs = JSON.parse(localStorage.getItem("utilisateurs"));
-  let lastUser = utilisateurs[utilisateurs.length - 1];
-
-  lastUser.answers.push({
-    reponseChoisie,
-    correctAnswer,
-  });
-  lastUser.score = scoreValue;
-
-  localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
+    let users = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+    if (users.length > 0) {
+        users[users.length - 1].answers.push({ reponseChoisie, correctAnswer });
+        users[users.length - 1].score = scoreValue;
+        localStorage.setItem("utilisateurs", JSON.stringify(users));
+    }
 }
 
-// ---------- Global Timer ----------
-let minute = 0,
-  seconde = 0;
+// Global Timer
+let minute = 0, seconde = 0;
 setInterval(() => {
-  seconde++;
-  if (seconde === 60) {
-    seconde = 0;
-    minute++;
-  }
-  document.getElementById("time_global_minute").textContent = minute;
-  document.getElementById("time_global_seconde").textContent = seconde;
+    seconde++;
+    if (seconde === 60) { seconde = 0; minute++; }
+    document.getElementById("time_global_minute").textContent = minute;
+    document.getElementById("time_global_seconde").textContent = seconde < 10 ? "0" + seconde : seconde;
 }, 1000);
